@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormArray, Validators } from '@angular/forms';
 
 import { bloodgroups, countries } from '../constants';
 
@@ -12,25 +12,44 @@ export class SignupComponent implements OnInit {
 
   bloodGroups: string[] = bloodgroups;
   countries: { Country: string, CountryCode: string, ISOCodes: string }[] = countries;
-  registrationForm = new FormGroup({
-    name: new FormControl(''),
-    person: new FormGroup({
-      gender: new FormControl('Male'),
-      dob: new FormControl(''),
-      bloodgroup: new FormControl('B+')
+  registrationForm = this.formbuilder.group({
+    name: ['', Validators.required],
+    person: this.formbuilder.group({
+      gender: ['', Validators.required],
+      dob: ['', Validators.required],
+      bloodgroup: ['', Validators.required]
     }),
-    contact: new FormGroup({
-      country: new FormControl('India'),
-      phonecountrycode: new FormControl('+91'),
-      phone: new FormControl('')
+    contact: this.formbuilder.group({
+      country: ['', Validators.required],
+      phones: this.formbuilder.array([
+        this.formbuilder.group({
+          phonecountrycode: ['', Validators.required],
+          phone: ['', Validators.required]
+        })
+      ])
     }),
-    email: new FormControl(''),
-    password: new FormControl('')
+    email: ['', Validators.required],
+    password: ['', Validators.required]
   });
 
-  constructor() { }
+  get phones() {
+    return this.registrationForm.get('contact.phones') as FormArray;
+  }
+
+  constructor(
+    private formbuilder: FormBuilder
+  ) { }
 
   ngOnInit() {
+  }
+
+  addPhoneNumber() {
+    this.phones.push(
+      this.formbuilder.group({
+        phonecountrycode: ['', Validators.required],
+        phone: ['', Validators.required]
+      })
+    );
   }
 
   doRegistration() {
