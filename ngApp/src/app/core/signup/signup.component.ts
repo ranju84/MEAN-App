@@ -11,17 +11,17 @@ import { bloodgroups, countries } from '../constants';
 export class SignupComponent implements OnInit {
 
   bloodGroups: string[] = bloodgroups;
-  countries = countries;
+  countries: { Country: string, CountryCode: string, ISOCodes: string }[] = countries;
   registrationForm = new FormGroup({
     name: new FormControl(''),
-    pi: new FormGroup({
+    person: new FormGroup({
       gender: new FormControl('Male'),
       dob: new FormControl(''),
       bloodgroup: new FormControl('B+')
     }),
     contact: new FormGroup({
       country: new FormControl('India'),
-      countrycode: new FormControl('+91'),
+      phonecountrycode: new FormControl('+91'),
       phone: new FormControl('')
     }),
     email: new FormControl(''),
