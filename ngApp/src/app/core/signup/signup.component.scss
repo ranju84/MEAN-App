@@ -1,17 +1,25 @@
 .signup-container{
-    width: 300px;
+    width: 360px;
     margin: 30px auto;
     padding: 30px;
     background: #f6f6f6;
     border: solid 1px #e2e2e2;
     box-shadow: 0 0 10px rgba(0,0,0, 0.1);
-    text-align: center;
 
-    .form-control{
+    .form-control, .form-check-inline{
         margin-bottom: 15px;
+    }
+    .form-group{
+        margin-bottom: 0;
     }
     .btn{
         margin-bottom: 5px;
+    }
+    .other-links{
+        text-align: center;
+        border-top: solid 1px #ddd;
+        padding-top: 5px;
+        margin-top: 15px;
     }
     a{cursor: pointer;}
 }
