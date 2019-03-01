@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const allConstant = require('../config');
 
-const db = 'mongodb+srv://RanjanGayen_84:RanjuDefaultUser2019@cluster0-6k25v.mongodb.net/learningdb';
+const db = allConstant.DBPath;
 mongoose.connect(db, { useNewUrlParser: true }, err =>{
     if(err){
         console.log('Connection error: ' + err);

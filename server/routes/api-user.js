@@ -1,10 +1,11 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const allConstant = require('../config');
 const User = require('../models/user');
 
 const userrouter = express.Router();
 
-const secretKey = 'Ranju##Secret!';
+const secretKey = allConstant.SecretKey;
 
 userrouter.get('/', (req, res) => {
     res.send('From user routes');
